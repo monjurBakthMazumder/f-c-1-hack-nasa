@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"  data-theme="dark" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- tailwind css and daisy ui cdn  -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="./nasa.png" type="image/x-icon">
+    <title>Hack Nasa</title>
+</head>
+<body class="h-screen px-5 md:px-10 xl:px-20 py-20 bg-black">
+    <div class=" flex-col text-green-400 gap-10 flex justify-center items-center text-center h-full text-xs">
+        <textarea name="" id="textarea" cols="30" rows="2" class="bg-black border border-green-400 p-5 resize-none outline-none rounded w-full sm:w-3/5 lg:w-1/2 xl:w-1/3 text-sm"></textarea>
+        <button id="hack" class="btn btn-lg btn-outline text-green-400 border-green-400 hover:bg-green-500 hover:text-black mb-32 ">Hack Nasa...</button>
+        <p id="loadingText" class="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-semibold">Nasa hacking on <span id="loading">0</span>%</p>
+        <p id="loadingText100" class="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-semibold">Nasa hacked 100%</p>
+        <p id="information">011 01 0</p>
+        <p id="dot" class="text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-semibold">.......</p>
+        <button id="data" class="btn btn-lg btn-outline text-green-400 border-green-400 hover:bg-green-500 hover:text-black">All data of Nasa...</button>
+    </div>
+</body>
+<script>
+    const hack = document.getElementById('hack');
+    const data = document.getElementById('data');
+    const loading = document.getElementById('loading');
+    const loadingText = document.getElementById('loadingText');
+    const loadingText100 = document.getElementById('loadingText100');
+    const information = document.getElementById('information');
+    const dot = document.getElementById('dot');
+    const informationInnerText = information.innerText;
+    let percentage = 0;
+    const windowWidth = window.innerWidth;
+
+    loadingText.style.display = 'none';
+    loadingText100.style.display = 'none';
+    data.style.display = 'none';
+    information.style.display = 'none';
+    dot.style.display = 'none';
+
+    hack.addEventListener('click', function(){
+        loadingText.style.display = 'block';
+        hack.style.display = 'none';
+        document.getElementById('textarea').style.display= 'none';
+        setInterval(starLoading,100);
+        setTimeout(() => {
+            loadingText.style.display = 'none';
+            dot.style.display = 'block';
+        }, 10200);
+        setTimeout(() => {
+            loadingText100.style.display = 'block';
+            dot.style.display = 'none';
+        }, 11200);
+        setTimeout(() => {
+            data.style.display = 'block';
+        }, 11500);
+    })
+
+    function starLoading(){
+        loading.innerHTML= percentage++;
+    }
+    data.addEventListener('click', function(){
+        data.style.display = 'none';
+        loadingText100.style.display = 'none';
+        information.style.display = 'block';
+        if(windowWidth < 600){
+        setInterval(getData,20);
+        }
+        else if (windowWidth >= 600 && windowWidth < 1200) {  
+        setInterval(getData,10);
+        }
+        else{  
+        setInterval(getData,5);
+        }
+    })
+    function getData(){
+        information.innerText= informationInnerText + ' ' + information.innerText ;
+    }
+
+</script>
+</html>
